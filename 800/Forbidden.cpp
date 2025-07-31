@@ -2,36 +2,54 @@
 using namespace std;
 
 int main()
-{
-    int t;cin>>t;
-    while(t--)
     {
-        int n,k,x;
-        cin>>n>>k>>x;
-        vector<bool>dp(n+1,false);
-        vector<int>track;
-        dp[0] = true;
-        for(int i = 1;i <n+1;i++)
+        int t;cin>>t;
+        while(t--)
         {
-            bool temp = false;
-            for(int j = 1;j<=k;j++)
+            int n,k,x;
+            cin>>n>>k>>x;
+            if(x!=1)
             {
-               if(j==x) continue;
-               if(i-k>=0 && dp[i-k])
-               {
-                  temp = true;
-                  track.push_back(j);
-                  break;
-               }
+                cout<<"YES"<<endl;
+                cout<<n<<endl;
+                for(int i = 1;i<=n;i++) cout<<1<<" ";
+                cout<<endl;
             }
-            dp[i] = temp;
+            else{
+                if(k==1) 
+                {
+                    cout<<"NO"<<endl;
+                }
+                else if(k==2)
+                {
+                    if(n%2==0)
+                    {
+                        cout<<"YES"<<endl;
+                        cout<<n/2<<endl;
+                        for(int i=1;i<=n/2;i++) cout<<2<<" ";
+                        cout<<endl;
+                    }
+                    else{
+                        cout<<"NO"<<endl;
+                    }
+                }
+                else if(k==3)
+                {
+                    cout<<"YES"<<endl;
+                    if(n%2==0) 
+                    {  
+                        cout<<n/2<<endl;
+                        for(int i=1;i<=n/2;i++) cout<<2<<" ";
+                    }
+                    else 
+                    {
+                          cout<<"YES"<<endl;
+                          cout<<(n-3)/2 + 1<<endl;
+                          for(int i=1;i<(n-3)/2;i++) cout<<2<<" ";
+                          cout<<3;
+                    }
+                    }
+                }
+            }
         }
-        if(dp[n]==false) cout<<"No"<<endl;
-        else{
-            cout<<"Yes"<<endl;
-            cout<<track.size()<<endl;
-            for(int i=0;i<track.size();i++) cout<<track[i]<<" ";
-            cout<<endl;
-        }
-    }
-}
+    
